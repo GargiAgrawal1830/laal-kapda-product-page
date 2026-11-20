@@ -33,7 +33,7 @@ Open `index.html` in any browser (best in phone view, or on a phone). No install
 - `docs/Gargi_Agrawal_Presentation.pptx` – presentation
 
 ## Process
-Research → Problem definition → Ideation → Design → Usability review (Nielsen heuristics).
+Research → Problem definition → Ideation → Design → Usability review .
 
 ## Future scope
 Real product photos, 360° view, size/drape guide, user testing, accessibility audit, full checkout flow.
