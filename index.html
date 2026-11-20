@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laal Kapda – Mobile Product Page Prototype</title>
+<style>
+:root{--red:#9E1B1E;--deep:#5E0F14;--beige:#F4EBDD;--sand:#E6D5BC;--ink:#2A1A17;--mute:#7a6358;--c1:#9E1B1E;--c2:#F4EBDD;--r:16px;--bg:#d9c9b2;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1a17}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--bg);font-family:'Poppins','Segoe UI',system-ui,sans-serif;color:var(--ink);display:flex;justify-content:center;align-items:center}
+.phone{width:100%;max-width:390px;height:100%;max-height:800px;background:var(--beige);position:relative;overflow:hidden;border-radius:0;display:flex;flex-direction:column}
+@media(min-width:500px){.phone{border-radius:36px;box-shadow:0 20px 60px #0004;border:8px solid #1c0f0d;height:800px}}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--beige)}
+.screen.on{display:flex}
+.scroll{flex:1;overflow-y:auto;padding-bottom:96px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top))}
+.ib{width:38px;height:38px;border-radius:50%;background:#fff9;border:0;font-size:18px;color:var(--ink);cursor:pointer}
+.brand{font-weight:700;letter-spacing:2px;color:var(--red);font-size:14px}
+.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;height:330px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--sand)}
+.dots{display:flex;gap:6px;justify-content:center;margin:10px 0}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--sand)}
+.dots i.a{background:var(--red);width:20px;border-radius:5px}
+.pad{padding:0 18px}
+.tag{display:inline-block;background:var(--red);color:var(--beige);font-size:10px;padding:3px 9px;border-radius:20px;letter-spacing:1px}
+h1{font-size:21px;line-height:1.25;margin:8px 0 4px;font-family:Georgia,serif}
+.price{font-size:20px;font-weight:700;color:var(--red)}.price s{font-size:13px;color:var(--mute);font-weight:400;margin-left:6px}
+.rate{font-size:12px;color:var(--mute);margin:4px 0 14px}
+.lab{font-size:12px;font-weight:600;margin:16px 0 8px;display:flex;justify-content:space-between}.lab span{font-weight:400;color:var(--mute)}
+.sw{display:flex;gap:12px}.sw button{width:38px;height:38px;border-radius:50%;border:3px solid var(--beige);outline:2px solid transparent;cursor:pointer}
+.sw button.a{outline-color:var(--red)}
+.chips{display:flex;gap:8px}.chip{flex:1;padding:10px;border:1.5px solid var(--sand);border-radius:12px;background:#fff6;text-align:center;font-size:12px;cursor:pointer}
+.chip.a{border-color:var(--red);background:#fff;color:var(--red);font-weight:600}
+.card{background:#fff8;border-radius:var(--r);padding:14px;margin-top:12px}
+.row{display:flex;gap:8px}.row input{flex:1;padding:10px 12px;border:1.5px solid var(--sand);border-radius:12px;background:#fff;font-size:13px}
+.btn{border:0;border-radius:14px;padding:14px;font-weight:600;font-size:14px;cursor:pointer;background:var(--red);color:var(--beige)}
+.btn.o{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.msg{font-size:12px;margin-top:8px;color:var(--deep)}
+details{border-bottom:1px solid var(--sand);padding:12px 0;font-size:13px}summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+details p{margin-top:8px;color:var(--mute);line-height:1.5}
+.meter{height:8px;border-radius:6px;background:linear-gradient(90deg,var(--sand),var(--red));position:relative;margin:8px 0 4px}
+.meter b{position:absolute;top:-4px;width:16px;height:16px;border-radius:50%;background:var(--deep);border:3px solid var(--beige);left:78%}
+.mini{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}.mini div{flex:0 0 110px;font-size:11px}.mini .t{height:110px;border-radius:14px;margin-bottom:6px}
+.bar{position:absolute;bottom:0;left:0;right:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--beige);border-top:1px solid var(--sand);display:flex;gap:10px;align-items:center}
+.bar .btn{flex:1}.bar .ib{background:var(--sand)}
+.sheet{position:absolute;inset:0;background:#0007;display:none;align-items:flex-end;z-index:5}.sheet.on{display:flex}
+.sheet>div{background:var(--beige);width:100%;border-radius:24px 24px 0 0;padding:20px 18px 24px}
+.hot{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--beige);color:var(--red);font-weight:700;border:0;box-shadow:0 0 0 6px #f4ebdd66;animation:p 1.6s infinite;cursor:pointer}
+@keyframes p{50%{box-shadow:0 0 0 12px #f4ebdd00}}
+@media(prefers-reduced-motion:reduce){.hot{animation:none}}
+.nav{font-size:12px;text-align:center;color:var(--mute);padding:10px}
+.bagit{display:flex;gap:12px;align-items:center}.bagit .t{width:76px;height:76px;border-radius:14px;flex:none}
+.sum{display:flex;justify-content:space-between;font-size:13px;margin:8px 0}
+</style></head><body>
+<div class="phone" id="phone">
+
+<!-- SCREEN 1: PRODUCT -->
+<section class="screen on" id="s1">
+ <div class="top"><button class="ib" aria-label="Back">‹</button><span class="brand">LAAL KAPDA</span><button class="ib" onclick="go('s4')" aria-label="Bag">👜<sup id="cnt" style="font-size:10px"></sup></button></div>
+ <div class="scroll">
+  <div class="gal" id="gal">
+   <div class="slide"><svg id="art1" width="300" height="300" viewBox="0 0 300 300"></svg></div>
+   <div class="slide"><svg id="art2" width="300" height="300" viewBox="0 0 300 300"></svg><button class="hot" style="top:90px;left:80px" onclick="go('s2')" aria-label="Feel the weave">+</button></div>
+   <div class="slide"><svg id="art3" width="300" height="300" viewBox="0 0 300 300"></svg></div>
+  </div>
+  <div class="dots" id="dots"><i class="a"></i><i></i><i></i></div>
+  <div class="pad">
+   <span class="tag">HANDLOOM · ODISHA</span>
+   <h1>Sambalpuri Ikat Silk Stole</h1>
+   <div><span class="price">₹2,499</span><s>₹3,200</s></div>
+   <div class="rate">★ 4.7 · 312 reviews · 38 people saved this today</div>
+
+   <div class="lab">Colour <span id="cn">Sindoor Red</span></div>
+   <div class="sw" id="sw"></div>
+
+   <div class="lab">Length <span>Tap to choose</span></div>
+   <div class="chips" id="len"><div class="chip a" onclick="setLen(this,'Standard 2.2 m')">Standard 2.2 m</div><div class="chip" onclick="setLen(this,'Long 2.8 m')">Long 2.8 m</div></div>
+
+   <div class="card"><b style="font-size:13px">📍 Delivery estimate</b>
+    <div class="row" style="margin-top:8px"><input id="pin" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn o" style="padding:10px 14px" onclick="chk()">Check</button></div>
+    <div class="msg" id="pm"></div></div>
+
+   <div class="card" style="background:var(--red);color:var(--beige)"><b style="font-size:13px">Meet the weaver</b>
+    <p style="font-size:12px;margin-top:6px;line-height:1.5;opacity:.9">Woven by Kamala Meher's cooperative in Sambalpur. Each stole takes 4 days on a pit loom and the pattern is tied and dyed before weaving.</p></div>
+
+   <div style="margin-top:14px">
+    <details open><summary>Fabric & details <span>+</span></summary><p>Pure mulberry silk blend, 2.2 m × 0.7 m, soft hand-finished tassels.</p></details>
+    <details><summary>Care guide <span>+</span></summary><p>Dry clean first time. Store folded in muslin. Avoid direct sun.</p></details>
+    <details><summary>Returns <span>+</span></summary><p>7-day easy returns. Free pickup in most PIN codes.</p></details>
+   </div>
+
+   <div class="lab">What buyers say</div>
+   <div class="card" style="margin-top:0"><div style="font-size:12px">True to colour?</div><div class="meter"><b></b></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--mute)"><span>Different</span><span>Exactly as shown</span></div>
+    <p style="font-size:12px;margin-top:10px;line-height:1.5">“The red is deeper in person and the weave feels so rich.” <b>– Ananya, Bhubaneswar</b></p></div>
+
+   <div class="lab">Style it with</div>
+   <div class="mini"><div><div class="t" style="background:linear-gradient(135deg,#c9a87c,#e6d5bc)"></div>Cotton kurta<br><b>₹1,799</b></div><div><div class="t" style="background:linear-gradient(135deg,#5E0F14,#9E1B1E)"></div>Silk dupatta<br><b>₹1,299</b></div><div><div class="t" style="background:linear-gradient(135deg,#e6d5bc,#f4ebdd)"></div>Brass earrings<br><b>₹699</b></div></div>
+  </div>
+ </div>
+ <div class="bar"><button class="ib" id="wish" onclick="wish()" aria-label="Wishlist">♡</button><button class="btn" onclick="sheet(true)">Add to bag · ₹2,499</button></div>
+</section>
+
+<!-- SCREEN 2: WEAVE DETAIL -->
+<section class="screen" id="s2" style="background:var(--deep);color:var(--beige)">
+ <div class="top"><button class="ib" onclick="go('s1')" aria-label="Close">✕</button><span class="brand" style="color:var(--beige)">FEEL THE WEAVE</span><span style="width:38px"></span></div>
+ <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:18px">
+  <div style="position:relative;width:300px;height:300px;border-radius:24px;overflow:hidden"><svg id="art4" width="300" height="300" viewBox="0 0 300 300"></svg>
+   <button class="hot" style="top:60px;left:70px" onclick="note(0)">1</button><button class="hot" style="top:170px;left:200px" onclick="note(1)">2</button><button class="hot" style="top:240px;left:60px" onclick="note(2)">3</button></div>
+  <div class="card" style="background:#fff2;min-height:100px;width:100%"><b id="nt">Tap a hotspot</b><p id="nd" style="font-size:12px;margin-top:6px;line-height:1.5;opacity:.85">Explore the ikat motif, the silk sheen and the hand-finished edge.</p></div>
+  <button class="btn" style="background:var(--beige);color:var(--red);width:100%" onclick="go('s1')">Back to product</button>
+ </div>
+</section>
+
+<!-- SCREEN 4: BAG -->
+<section class="screen" id="s4">
+ <div class="top"><button class="ib" onclick="go('s1')" aria-label="Back">‹</button><span class="brand">MY BAG</span><span style="width:38px"></span></div>
+ <div class="scroll pad">
+  <div id="empty" class="card" style="text-align:center">Your bag is empty.</div>
+  <div id="full" style="display:none">
+   <div class="card bagit"><div class="t" id="bt"></div><div style="flex:1;font-size:13px"><b>Sambalpuri Ikat Silk Stole</b><div style="color:var(--mute);font-size:11px;margin:3px 0" id="bd"></div><b style="color:var(--red)">₹2,499</b></div></div>
+   <div class="card"><div class="sum"><span>Subtotal</span><span>₹2,499</span></div><div class="sum"><span>Delivery</span><span>Free</span></div><div class="sum" style="font-weight:700;border-top:1px solid var(--sand);padding-top:8px"><span>Total</span><span>₹2,499</span></div></div>
+   <div class="card" style="font-size:12px">🎁 Add a handwritten gift note for ₹0</div>
+  </div>
+ </div>
+ <div class="bar"><button class="btn" onclick="alert('Prototype ends here. Checkout is out of scope for this project.')">Proceed to checkout</button></div>
+</section>
+
+<!-- SHEET: OPTIONS CONFIRM -->
+<div class="sheet" id="sheet"><div>
+ <b style="font-size:15px">Confirm your pick</b>
+ <div class="bagit" style="margin:14px 0"><div class="t" id="st" style="border-radius:14px"></div><div style="font-size:13px"><b id="sc"></b><div id="sl" style="color:var(--mute);font-size:12px;margin-top:3px"></div></div></div>
+ <div class="row"><button class="btn o" style="flex:1" onclick="sheet(false)">Change</button><button class="btn" style="flex:2" onclick="addBag()">Add to bag</button></div>
+</div></div>
+</div>
+
+<script>
+const C=[{n:'Sindoor Red',a:'#9E1B1E',b:'#F4EBDD'},{n:'Sand Beige',a:'#C9A87C',b:'#5E0F14'},{n:'Deep Maroon',a:'#5E0F14',b:'#E6D5BC'}];
+let ci=0,len='Standard 2.2 m',inBag=false;
+const $=id=>document.getElementById(id);
+function ikat(a,b,scale,rot){let s=`<defs><pattern id="p${scale}${rot}" width="${scale}" height="${scale}" patternUnits="userSpaceOnUse" patternTransform="rotate(${rot})"><rect width="${scale}" height="${scale}" fill="${a}"/><path d="M${scale/2} 3 L${scale-3} ${scale/2} L${scale/2} ${scale-3} L3 ${scale/2}Z" fill="${b}"/><circle cx="${scale/2}" cy="${scale/2}" r="${scale/9}" fill="${a}"/></pattern></defs>`;return s+`<rect x="0" y="0" width="300" height="300" fill="url(#p${scale}${rot})"/>`}
+function paint(){const c=C[ci];
+ $('art1').innerHTML=`<rect width="300" height="300" fill="#E6D5BC"/><g transform="translate(75 10)"><rect width="150" height="280" rx="6" fill="${c.a}"/><svg x="0" y="0" width="150" height="280" viewBox="0 0 150 280">${ikat(c.a,c.b,26,0)}</svg><rect y="0" width="150" height="14" fill="${c.a}"/><rect y="266" width="150" height="14" fill="${c.a}"/></g>`;
+ $('art2').innerHTML=ikat(c.a,c.b,34,0);
+ $('art3').innerHTML=`<rect width="300" height="300" fill="#E6D5BC"/><path d="M20 40 Q150 10 280 60 L260 260 Q150 290 40 250Z" fill="${c.a}"/><svg x="20" y="20" width="260" height="260" viewBox="0 0 300 300" opacity=".55">${ikat('none',c.b,30,25)}</svg>`;
+ $('art4').innerHTML=ikat(c.a,c.b,60,0);
+ $('cn').textContent=c.n;$('st').style.background=c.a;$('bt').style.background=c.a;
+ $('sw').innerHTML=C.map((x,i)=>`<button class="${i==ci?'a':''}" style="background:${x.a}" onclick="ci=${i};paint()" aria-label="${x.n}"></button>`).join('');
+ $('sc').textContent='Sambalpuri Ikat Stole – '+c.n;$('sl').textContent=len;$('bd').textContent=c.n+' · '+len}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$(id).classList.add('on');if(id=='s4'){$('empty').style.display=inBag?'none':'block';$('full').style.display=inBag?'block':'none'}}
+function sheet(v){$('sheet').classList.toggle('on',v);$('sl').textContent=len}
+function addBag(){inBag=true;sheet(false);$('cnt').textContent=' 1';paint();go('s4')}
+function setLen(el,v){len=v;document.querySelectorAll('#len .chip').forEach(c=>c.classList.remove('a'));el.classList.add('a');paint()}
+function wish(){const w=$('wish');w.textContent=w.textContent=='♡'?'♥':'♡';w.style.color='#9E1B1E'}
+function chk(){const v=$('pin').value.trim(),m=$('pm');if(!/^\d{6}$/.test(v)){m.textContent='Please enter a valid 6-digit PIN code.';return}
+ const d=new Date();d.setDate(d.getDate()+(v.startsWith('75')?3:6));m.textContent='✓ Delivery by '+d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'})+' · Free delivery'}
+const N=[['The ikat motif','The pattern is tied and dyed on the thread before weaving, so no two stoles match.'],['Silk sheen','A mulberry silk blend gives the soft glow without feeling stiff.'],['Hand-finished edge','Each tassel is twisted by hand and checked by the weaver.']];
+function note(i){$('nt').textContent=N[i][0];$('nd').textContent=N[i][1]}
+$('gal').addEventListener('scroll',e=>{const i=Math.round(e.target.scrollLeft/e.target.clientWidth);document.querySelectorAll('#dots i').forEach((d,j)=>d.classList.toggle('a',i==j))});
+paint();
+</script></body></html>
